@@ -8,7 +8,7 @@ public class PlatMapper {
 
     public PlatDTO toDTO(Plat plat) {
         PlatDTO platDTO = new PlatDTO();
-
+        platDTO.setId(plat.getId());
         platDTO.setNom(plat.getNom());
         platDTO.setDescription(plat.getDescription());
         platDTO.setPrix(plat.getPrix());
@@ -17,7 +17,7 @@ public class PlatMapper {
 
     public Plat toEntity(PlatDTO platDTO) {
         Plat plat = new Plat();
-
+        plat.setId(platDTO.getId()); // Important uniquement pour les mises à jour
         plat.setNom(platDTO.getNom());
         plat.setDescription(platDTO.getDescription());
         plat.setPrix(platDTO.getPrix());

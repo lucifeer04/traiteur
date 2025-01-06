@@ -20,7 +20,7 @@ public class MenuMapper {
     // Convertit Menu en MenuDTO
     public MenuDTO toDTO(Menu menu) {
         MenuDTO menuDTO = new MenuDTO();
-
+        menuDTO.setId(menu.getId());
         menuDTO.setNom(menu.getNom());
         menuDTO.setDescription(menu.getDescription());
         menuDTO.setPrix(menu.getPrix());
@@ -38,7 +38,7 @@ public class MenuMapper {
     // Convertit MenuDTO en Menu
     public Menu toEntity(MenuDTO menuDTO) {
         Menu menu = new Menu();
-         // Important uniquement pour les mises à jour
+        menu.setId(menuDTO.getId()); // Important uniquement pour les mises à jour
         menu.setNom(menuDTO.getNom());
         menu.setDescription(menuDTO.getDescription());
         menu.setPrix(menuDTO.getPrix());
