@@ -3,6 +3,7 @@ package com.example.gestion_de_traiteur.securite.config;
 import com.example.gestion_de_traiteur.securite.Service.CustomUserDetailsService;
 
 import com.example.gestion_de_traiteur.securite.Token.JwtFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,14 +19,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 public class SecurityConfig {
+    @Autowired
+    private  CustomUserDetailsService customUserDetailsService;
+    @Autowired
+    private  JwtFilter jwtFilter;
 
-    private final CustomUserDetailsService customUserDetailsService;
-    private final JwtFilter jwtFilter;
 
-    public SecurityConfig(CustomUserDetailsService customUserDetailsService, JwtFilter jwtFilter) {
-        this.customUserDetailsService = customUserDetailsService;
-        this.jwtFilter = jwtFilter;
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -38,6 +37,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/plats/**").permitAll()
                         .requestMatchers("/api/menus/").permitAll()
                         .requestMatchers("/api/menus/**").permitAll()
+                        .requestMatchers("/api/packs/").permitAll()
+                        .requestMatchers("/api/packs/**").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .build();
